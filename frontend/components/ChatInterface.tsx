@@ -183,7 +183,7 @@ export default function ChatInterface({ token }: { token: string }) {
             placeholder={connected ? "Message Sempre AI..." : "Connecting..."}
             disabled={!connected}
             rows={1}
-            style={{flex:1, fontSize:"14px", resize:"none", outline:"none", color:"#E2E2F0", background:"transparent", border:"none", lineHeight:1.6, fontFamily:"inherit", maxHeight:"160px", placeholder:"#3A3A4A"}}
+            style={{flex:1, fontSize:"14px", resize:"none", outline:"none", color:"#E2E2F0", background:"transparent", border:"none", lineHeight:1.6, fontFamily:"inherit", maxHeight:"160px"}}
           />
           <button
             onClick={sendMessage}
