@@ -2,74 +2,72 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Navbar */}
-      <nav className="border-b border-gray-100 px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-[#1A1A2E] flex items-center justify-center">
-            <span className="text-[#00D4AA] text-xs font-bold">S</span>
+    <main style={{minHeight:"100vh", background:"#FFFFFF", fontFamily:"-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"}}>
+
+      <nav style={{borderBottom:"1px solid #F3F4F6", padding:"16px 48px", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+        <div style={{display:"flex", alignItems:"center", gap:"10px"}}>
+          <div style={{width:"30px", height:"30px", borderRadius:"8px", background:"#1A1A2E", display:"flex", alignItems:"center", justifyContent:"center"}}>
+            <span style={{color:"#00D4AA", fontSize:"13px", fontWeight:"bold"}}>S</span>
           </div>
-          <span className="font-semibold text-gray-900 tracking-tight">Sempre AI</span>
+          <span style={{fontWeight:600, color:"#111827", fontSize:"15px"}}>Sempre AI</span>
         </div>
-        <div className="flex items-center gap-3">
-          <Link href="/sign-in" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            Sign in
-          </Link>
-          <Link href="/sign-up" className="text-sm bg-[#1A1A2E] text-white px-4 py-2 rounded-lg hover:bg-[#2d2d4e] transition-colors">
-            Get started
-          </Link>
+        <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
+          <Link href="/sign-in" style={{fontSize:"14px", color:"#6B7280", textDecoration:"none"}}>Sign in</Link>
+          <Link href="/sign-up" style={{fontSize:"14px", background:"#1A1A2E", color:"#FFFFFF", padding:"8px 18px", borderRadius:"8px", textDecoration:"none", fontWeight:500}}>Get started</Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <div className="max-w-4xl mx-auto px-8 pt-24 pb-16 text-center">
-        <div className="inline-flex items-center gap-2 bg-[#F0FBF8] text-[#0F6E56] text-xs font-medium px-3 py-1.5 rounded-full mb-8">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#00D4AA]"></div>
+      <div style={{maxWidth:"800px", margin:"0 auto", padding:"96px 48px 64px", textAlign:"center"}}>
+        <div style={{display:"inline-flex", alignItems:"center", gap:"8px", background:"#F0FBF8", color:"#0F6E56", fontSize:"12px", fontWeight:500, padding:"6px 14px", borderRadius:"20px", marginBottom:"32px"}}>
+          <div style={{width:"6px", height:"6px", borderRadius:"50%", background:"#00D4AA"}}></div>
           Powered by AWS Bedrock + Claude
         </div>
 
-        <h1 className="text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-6">
-          Your dedicated AI agent.
-          <br />
-          <span className="text-[#00D4AA]">Always there.</span>
+        <h1 style={{fontSize:"52px", fontWeight:700, color:"#111827", lineHeight:1.15, marginBottom:"24px", letterSpacing:"-1px"}}>
+          Your dedicated AI agent.<br />
+          <span style={{color:"#00D4AA"}}>Always there.</span>
         </h1>
 
-        <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Sempre AI gives you a private AI agent running on its own cloud server.
-          Execute code, manage files, and get real work done — securely.
+        <p style={{fontSize:"18px", color:"#6B7280", marginBottom:"40px", lineHeight:1.7, maxWidth:"520px", margin:"0 auto 40px"}}>
+          Sempre AI gives you a private AI agent running on its own cloud server. Execute code, manage files, and get real work done securely.
         </p>
 
-        <div className="flex items-center gap-4 justify-center">
-          <Link href="/sign-up" className="bg-[#1A1A2E] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#2d2d4e] transition-colors">
-            Start for free
-          </Link>
-          <Link href="/sign-in" className="text-gray-500 px-6 py-3 rounded-lg font-medium hover:text-gray-900 transition-colors border border-gray-200 hover:border-gray-300">
-            Sign in
-          </Link>
+        <div style={{display:"flex", alignItems:"center", gap:"12px", justifyContent:"center"}}>
+          <Link href="/sign-up" style={{background:"#1A1A2E", color:"#FFFFFF", padding:"12px 24px", borderRadius:"10px", textDecoration:"none", fontWeight:500, fontSize:"15px"}}>Start for free</Link>
+          <Link href="/sign-in" style={{color:"#6B7280", padding:"12px 24px", borderRadius:"10px", textDecoration:"none", fontWeight:500, fontSize:"15px", border:"1px solid #E5E7EB"}}>Sign in</Link>
         </div>
       </div>
 
-      {/* Features */}
-      <div className="max-w-5xl mx-auto px-8 pb-24">
-        <div className="grid grid-cols-3 gap-6">
-          {[
-            { title: "Dedicated Instance", desc: "Your own EC2 server. No shared resources, complete isolation.", icon: "🖥️" },
-            { title: "Shell Access", desc: "Your agent can execute commands, manage files, and run scripts.", icon: "⚡" },
-            { title: "Enterprise Security", desc: "HTTPS, JWT auth, IAM least-privilege, CloudWatch logging.", icon: "🔒" },
-          ].map((f) => (
-            <div key={f.title} className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-              <div className="text-2xl mb-3">{f.icon}</div>
-              <h3 className="font-semibold text-gray-900 mb-2">{f.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+      <div style={{maxWidth:"900px", margin:"0 auto", padding:"0 48px 96px"}}>
+        <div style={{display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"24px"}}>
+          <div style={{background:"#F9FAFB", borderRadius:"14px", padding:"28px", border:"1px solid #F3F4F6"}}>
+            <div style={{width:"40px", height:"40px", background:"#EEF2FF", borderRadius:"10px", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:"16px", fontSize:"20px"}}>
+              <span>&#x1F5A5;</span>
             </div>
-          ))}
+            <h3 style={{fontWeight:600, color:"#111827", fontSize:"15px", marginBottom:"8px"}}>Dedicated Instance</h3>
+            <p style={{fontSize:"13px", color:"#6B7280", lineHeight:1.6}}>Your own EC2 server. No shared resources, complete process and filesystem isolation.</p>
+          </div>
+          <div style={{background:"#F9FAFB", borderRadius:"14px", padding:"28px", border:"1px solid #F3F4F6"}}>
+            <div style={{width:"40px", height:"40px", background:"#FFF7ED", borderRadius:"10px", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:"16px", fontSize:"20px"}}>
+              <span>&#x26A1;</span>
+            </div>
+            <h3 style={{fontWeight:600, color:"#111827", fontSize:"15px", marginBottom:"8px"}}>Shell Access</h3>
+            <p style={{fontSize:"13px", color:"#6B7280", lineHeight:1.6}}>Your agent can execute commands, manage files, run scripts, and interact with the OS directly.</p>
+          </div>
+          <div style={{background:"#F9FAFB", borderRadius:"14px", padding:"28px", border:"1px solid #F3F4F6"}}>
+            <div style={{width:"40px", height:"40px", background:"#F0FBF8", borderRadius:"10px", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:"16px", fontSize:"20px"}}>
+              <span>&#x1F512;</span>
+            </div>
+            <h3 style={{fontWeight:600, color:"#111827", fontSize:"15px", marginBottom:"8px"}}>Enterprise Security</h3>
+            <p style={{fontSize:"13px", color:"#6B7280", lineHeight:1.6}}>HTTPS with Let's Encrypt, JWT auth, IAM least-privilege, CloudWatch logging, and CloudTrail.</p>
+          </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="border-t border-gray-100 px-8 py-6 text-center">
-        <p className="text-sm text-gray-400">Sempre AI · Always There. Always Secure.</p>
+      <div style={{borderTop:"1px solid #F3F4F6", padding:"24px 48px", textAlign:"center"}}>
+        <p style={{fontSize:"13px", color:"#9CA3AF"}}>Sempre AI · Always There. Always Secure.</p>
       </div>
+
     </main>
   );
 }
