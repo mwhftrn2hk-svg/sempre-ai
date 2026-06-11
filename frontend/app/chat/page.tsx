@@ -2,7 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import ChatInterface from "@/components/ChatInterface";
 
 export default async function ChatPage() {
-  const { getToken } = auth();
+  const { getToken } = await auth();
   const user = await currentUser();
   const token = await getToken();
 
