@@ -8,29 +8,27 @@ export default async function ChatPage() {
   const token = await getToken();
 
   return (
-    <main className="flex h-screen bg-[#0F0F14] overflow-hidden">
-      <aside className="w-56 flex-shrink-0 bg-[#111116] border-r border-[#1E1E26] flex flex-col">
-        <div className="flex items-center gap-3 px-5 py-5">
-          <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 border border-[#2A2A3E]">
-            <span className="text-[#00D4AA] text-sm font-bold">S</span>
+    <main style={{display:"flex", height:"100vh", background:"#0D0D12", overflow:"hidden"}}>
+      <aside style={{width:"240px", flexShrink:0, background:"#111118", borderRight:"1px solid #1E1E28", display:"flex", flexDirection:"column"}}>
+        <div style={{padding:"24px 20px", borderBottom:"1px solid #1E1E28", display:"flex", alignItems:"center", gap:"12px"}}>
+          <div style={{width:"34px", height:"34px", borderRadius:"10px", background:"#1A1A2E", border:"1px solid #2A2A3E", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0}}>
+            <span style={{color:"#00D4AA", fontSize:"13px", fontWeight:"bold"}}>S</span>
           </div>
-          <span className="font-semibold text-white text-sm tracking-tight">Sempre AI</span>
+          <span style={{fontWeight:600, color:"#FFFFFF", fontSize:"15px", letterSpacing:"-0.3px"}}>Sempre AI</span>
         </div>
-        <div className="px-3 mb-4">
-          <button className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-[#1A1A22] hover:text-gray-300 transition-colors border border-[#1E1E26]">
-            <span className="text-base leading-none pb-0.5">+</span>
+        <div style={{padding:"16px"}}>
+          <button style={{width:"100%", display:"flex", alignItems:"center", gap:"10px", padding:"10px 14px", borderRadius:"10px", fontSize:"13px", color:"#6B7280", background:"transparent", border:"1px solid #1E1E28", cursor:"pointer"}}>
+            <span style={{fontSize:"18px", lineHeight:1, marginBottom:"1px"}}>+</span>
             <span>New conversation</span>
           </button>
         </div>
-        <div className="flex-1" />
-        <div className="p-4 border-t border-[#1E1E26] flex items-center gap-3">
+        <div style={{flex:1}} />
+        <div style={{padding:"16px 20px", borderTop:"1px solid #1E1E28", display:"flex", alignItems:"center", gap:"12px"}}>
           <UserButton afterSignOutUrl="/" />
-          <div className="min-w-0">
-            <p className="text-xs text-gray-400 truncate">{user?.emailAddresses[0]?.emailAddress}</p>
-          </div>
+          <p style={{fontSize:"12px", color:"#4B4B5A", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap"}}>{user?.emailAddresses[0]?.emailAddress}</p>
         </div>
       </aside>
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div style={{flex:1, display:"flex", flexDirection:"column", overflow:"hidden"}}>
         <ChatInterface token={token || ""} />
       </div>
     </main>

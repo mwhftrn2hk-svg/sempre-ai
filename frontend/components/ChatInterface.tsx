@@ -9,12 +9,12 @@ interface Message {
 
 function CodeBlock({ code }: { code: string }) {
   return (
-    <div className="my-3 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] overflow-hidden">
-      <div className="px-4 py-2 border-b border-[#2A2A3A] flex items-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-[#00D4AA] opacity-80"></div>
-        <span className="text-xs text-gray-600 font-mono">output</span>
+    <div style={{margin:"12px 0", borderRadius:"10px", background:"#0A0A0F", border:"1px solid #2A2A3A", overflow:"hidden"}}>
+      <div style={{padding:"8px 16px", borderBottom:"1px solid #2A2A3A", display:"flex", alignItems:"center", gap:"8px"}}>
+        <div style={{width:"8px", height:"8px", borderRadius:"50%", background:"#00D4AA", opacity:0.8}}></div>
+        <span style={{fontSize:"11px", color:"#4B4B5A", fontFamily:"monospace"}}>output</span>
       </div>
-      <pre className="px-4 py-3 text-xs text-[#9CA3AF] overflow-x-auto font-mono leading-6">{code}</pre>
+      <pre style={{padding:"16px", fontSize:"12px", color:"#9CA3AF", overflowX:"auto", fontFamily:"monospace", lineHeight:1.6}}>{code}</pre>
     </div>
   );
 }
@@ -28,7 +28,7 @@ function MessageContent({ content }: { content: string }) {
           const code = part.replace(/```\w*\n?/, "").replace(/```$/, "");
           return <CodeBlock key={i} code={code} />;
         }
-        return <span key={i} className="whitespace-pre-wrap">{part}</span>;
+        return <span key={i} style={{whiteSpace:"pre-wrap"}}>{part}</span>;
       })}
     </div>
   );
@@ -37,8 +37,8 @@ function MessageContent({ content }: { content: string }) {
 function MessageBubble({ msg }: { msg: Message }) {
   if (msg.role === "user") {
     return (
-      <div className="flex justify-end">
-        <div className="max-w-[72%] px-5 py-3 rounded-2xl text-sm leading-relaxed bg-[#00D4AA] text-[#082E22] font-medium">
+      <div style={{display:"flex", justifyContent:"flex-end", marginBottom:"20px"}}>
+        <div style={{maxWidth:"68%", padding:"14px 18px", borderRadius:"18px", fontSize:"14px", lineHeight:1.6, background:"#00D4AA", color:"#082E22", fontWeight:500}}>
           {msg.content}
         </div>
       </div>
@@ -46,19 +46,19 @@ function MessageBubble({ msg }: { msg: Message }) {
   }
   if (msg.role === "system") {
     return (
-      <div className="flex justify-center">
-        <div className="px-4 py-2 rounded-lg text-xs text-red-400 bg-red-950/20 border border-red-900/20">
+      <div style={{display:"flex", justifyContent:"center", marginBottom:"20px"}}>
+        <div style={{padding:"8px 16px", borderRadius:"8px", fontSize:"12px", color:"#F87171", background:"rgba(127,29,29,0.2)", border:"1px solid rgba(127,29,29,0.3)"}}>
           {msg.content}
         </div>
       </div>
     );
   }
   return (
-    <div className="flex gap-3 items-start">
-      <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#2A2A3E]">
-        <span className="text-[#00D4AA] text-xs font-bold">S</span>
+    <div style={{display:"flex", gap:"14px", alignItems:"flex-start", marginBottom:"20px"}}>
+      <div style={{width:"34px", height:"34px", borderRadius:"10px", background:"#1A1A2E", border:"1px solid #2A2A3E", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:"2px"}}>
+        <span style={{color:"#00D4AA", fontSize:"12px", fontWeight:"bold"}}>S</span>
       </div>
-      <div className="max-w-[75%] px-5 py-3.5 rounded-2xl text-sm leading-relaxed bg-[#16161E] text-[#D4D4E8] border border-[#222230]">
+      <div style={{maxWidth:"74%", padding:"14px 18px", borderRadius:"18px", fontSize:"14px", lineHeight:1.6, background:"#17171F", color:"#D4D4E8", border:"1px solid #222230"}}>
         <MessageContent content={msg.content} />
       </div>
     </div>
@@ -127,48 +127,54 @@ export default function ChatInterface({ token }: { token: string }) {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="px-8 py-4 border-b border-[#1E1E26] flex items-center gap-2.5">
-        <div className={`w-2 h-2 rounded-full transition-colors ${connected ? "bg-[#00D4AA]" : "bg-gray-700"}`}></div>
-        <span className="text-sm text-gray-500">{connected ? "Agent connected" : connecting ? "Connecting..." : "Disconnected"}</span>
+    <div style={{display:"flex", flexDirection:"column", height:"100%"}}>
+      <div style={{padding:"16px 32px", borderBottom:"1px solid #1E1E28", display:"flex", alignItems:"center", gap:"10px"}}>
+        <div style={{width:"8px", height:"8px", borderRadius:"50%", background: connected ? "#00D4AA" : "#374151"}}></div>
+        <span style={{fontSize:"13px", color:"#6B7280"}}>{connected ? "Agent connected" : connecting ? "Connecting..." : "Disconnected"}</span>
       </div>
-      <div className="flex-1 overflow-y-auto px-8 py-8 space-y-5">
+
+      <div style={{flex:1, overflowY:"auto", padding:"40px 32px 20px"}}>
         {connecting && (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <div className="w-8 h-8 border-2 border-[#00D4AA] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-sm text-gray-600">Starting your agent...</p>
+          <div style={{display:"flex", alignItems:"center", justifyContent:"center", height:"100%"}}>
+            <div style={{textAlign:"center"}}>
+              <div style={{width:"32px", height:"32px", border:"2px solid #00D4AA", borderTopColor:"transparent", borderRadius:"50%", animation:"spin 1s linear infinite", margin:"0 auto 16px"}}></div>
+              <p style={{fontSize:"13px", color:"#4B4B5A"}}>Starting your agent...</p>
             </div>
           </div>
         )}
+
         {!connecting && messages.length === 0 && (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-2xl bg-[#1A1A2E] flex items-center justify-center mx-auto mb-5 border border-[#2A2A3E]">
-                <span className="text-[#00D4AA] text-2xl font-bold">S</span>
+          <div style={{display:"flex", alignItems:"center", justifyContent:"center", height:"100%"}}>
+            <div style={{textAlign:"center"}}>
+              <div style={{width:"64px", height:"64px", borderRadius:"18px", background:"#1A1A2E", border:"1px solid #2A2A3E", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 20px"}}>
+                <span style={{color:"#00D4AA", fontSize:"24px", fontWeight:"bold"}}>S</span>
               </div>
-              <h2 className="text-lg font-semibold text-white mb-2">Sempre AI</h2>
-              <p className="text-sm text-gray-600 max-w-xs leading-relaxed">Your dedicated agent is ready. Run code, manage files, answer questions.</p>
+              <h2 style={{fontSize:"18px", fontWeight:600, color:"#FFFFFF", marginBottom:"8px"}}>Sempre AI</h2>
+              <p style={{fontSize:"13px", color:"#4B4B5A", maxWidth:"280px", lineHeight:1.6}}>Your dedicated agent is ready. Run code, manage files, answer questions.</p>
             </div>
           </div>
         )}
+
         {messages.map((msg, i) => <MessageBubble key={i} msg={msg} />)}
+
         {thinking && (
-          <div className="flex gap-3 items-start">
-            <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 border border-[#2A2A3E]">
-              <span className="text-[#00D4AA] text-xs font-bold">S</span>
+          <div style={{display:"flex", gap:"14px", alignItems:"flex-start", marginBottom:"20px"}}>
+            <div style={{width:"34px", height:"34px", borderRadius:"10px", background:"#1A1A2E", border:"1px solid #2A2A3E", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0}}>
+              <span style={{color:"#00D4AA", fontSize:"12px", fontWeight:"bold"}}>S</span>
             </div>
-            <div className="px-5 py-3.5 rounded-2xl bg-[#16161E] border border-[#222230] flex items-center gap-1.5">
-              {[0, 150, 300].map((delay, i) => (
-                <span key={i} className="w-1.5 h-1.5 rounded-full bg-gray-600 animate-bounce" style={{animationDelay:`${delay}ms`}}></span>
-              ))}
+            <div style={{padding:"14px 18px", borderRadius:"18px", background:"#17171F", border:"1px solid #222230", display:"flex", gap:"6px", alignItems:"center"}}>
+              <span style={{width:"6px", height:"6px", borderRadius:"50%", background:"#4B4B5A", display:"inline-block", animation:"bounce 1.2s infinite"}}></span>
+              <span style={{width:"6px", height:"6px", borderRadius:"50%", background:"#4B4B5A", display:"inline-block", animation:"bounce 1.2s 0.2s infinite"}}></span>
+              <span style={{width:"6px", height:"6px", borderRadius:"50%", background:"#4B4B5A", display:"inline-block", animation:"bounce 1.2s 0.4s infinite"}}></span>
             </div>
           </div>
         )}
+
         <div ref={bottomRef} />
       </div>
-      <div className="px-8 pb-8 pt-4">
-        <div className="flex gap-3 items-end bg-[#111116] border border-[#222230] rounded-2xl px-5 py-4 focus-within:border-[#2A2A3E] transition-colors">
+
+      <div style={{padding:"20px 32px 28px"}}>
+        <div style={{display:"flex", gap:"12px", alignItems:"flex-end", background:"#17171F", border:"1px solid #2A2A3A", borderRadius:"16px", padding:"16px 18px"}}>
           <textarea
             ref={textareaRef}
             value={input}
@@ -177,19 +183,24 @@ export default function ChatInterface({ token }: { token: string }) {
             placeholder={connected ? "Message Sempre AI..." : "Connecting..."}
             disabled={!connected}
             rows={1}
-            className="flex-1 text-sm resize-none focus:outline-none placeholder-gray-700 text-[#D4D4E8] bg-transparent disabled:opacity-40 leading-relaxed"
-            style={{maxHeight:"160px"}}
+            style={{flex:1, fontSize:"14px", resize:"none", outline:"none", color:"#E2E2F0", background:"transparent", border:"none", lineHeight:1.6, fontFamily:"inherit", maxHeight:"160px", placeholder:"#3A3A4A"}}
           />
           <button
             onClick={sendMessage}
             disabled={!connected || !input.trim()}
-            className="w-9 h-9 bg-[#00D4AA] text-[#082E22] rounded-xl flex items-center justify-center hover:bg-[#00bfa0] transition-colors disabled:opacity-20 disabled:cursor-not-allowed flex-shrink-0 font-bold text-base"
+            style={{width:"36px", height:"36px", background:"#00D4AA", color:"#082E22", borderRadius:"10px", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontWeight:"bold", fontSize:"16px", opacity: (!connected || !input.trim()) ? 0.3 : 1}}
           >
             ↑
           </button>
         </div>
-        <p className="text-xs text-gray-700 text-center mt-3">Sempre AI may make mistakes. Verify important commands before running.</p>
+        <p style={{fontSize:"11px", color:"#2A2A3A", textAlign:"center", marginTop:"10px"}}>Sempre AI may make mistakes. Verify important commands before running.</p>
       </div>
+
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        textarea::placeholder { color: #3A3A4A; }
+      `}</style>
     </div>
   );
 }
