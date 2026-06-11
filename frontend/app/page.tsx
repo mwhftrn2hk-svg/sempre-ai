@@ -1,11 +1,6 @@
 import Link from "next/link";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 
-export default async function Home() {
-  const { userId } = await auth();
-  if (userId) redirect("/chat");
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-[#1A1A2E] flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-2xl">
