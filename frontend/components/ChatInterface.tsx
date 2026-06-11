@@ -44,7 +44,6 @@ function MessageBubble({ msg }: { msg: Message }) {
       </div>
     );
   }
-
   if (msg.role === "system") {
     return (
       <div className="flex justify-center">
@@ -54,7 +53,6 @@ function MessageBubble({ msg }: { msg: Message }) {
       </div>
     );
   }
-
   return (
     <div className="flex gap-3 items-start">
       <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#2A2A3E]">
@@ -134,7 +132,6 @@ export default function ChatInterface({ token }: { token: string }) {
         <div className={`w-2 h-2 rounded-full transition-colors ${connected ? "bg-[#00D4AA]" : "bg-gray-700"}`}></div>
         <span className="text-sm text-gray-500">{connected ? "Agent connected" : connecting ? "Connecting..." : "Disconnected"}</span>
       </div>
-
       <div className="flex-1 overflow-y-auto px-8 py-8 space-y-5">
         {connecting && (
           <div className="flex items-center justify-center h-full">
@@ -144,7 +141,6 @@ export default function ChatInterface({ token }: { token: string }) {
             </div>
           </div>
         )}
-
         {!connecting && messages.length === 0 && (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
@@ -156,9 +152,7 @@ export default function ChatInterface({ token }: { token: string }) {
             </div>
           </div>
         )}
-
         {messages.map((msg, i) => <MessageBubble key={i} msg={msg} />)}
-
         {thinking && (
           <div className="flex gap-3 items-start">
             <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 border border-[#2A2A3E]">
@@ -171,10 +165,8 @@ export default function ChatInterface({ token }: { token: string }) {
             </div>
           </div>
         )}
-
         <div ref={bottomRef} />
       </div>
-
       <div className="px-8 pb-8 pt-4">
         <div className="flex gap-3 items-end bg-[#111116] border border-[#222230] rounded-2xl px-5 py-4 focus-within:border-[#2A2A3E] transition-colors">
           <textarea
