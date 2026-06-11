@@ -1,7 +1,6 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import ChatInterface from "@/components/ChatInterface";
 import { UserButton } from "@clerk/nextjs";
-import Link from "next/link";
 
 export default async function ChatPage() {
   const { getToken } = await auth();
@@ -11,34 +10,31 @@ export default async function ChatPage() {
   return (
     <main className="flex h-screen bg-[#0F0F14] overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-52 flex-shrink-0 bg-[#141418] border-r border-[#1E1E24] flex flex-col">
-        {/* Logo */}
-        <div className="flex items-center gap-2 px-4 py-4 border-b border-[#1E1E24]">
-          <div className="w-7 h-7 rounded-lg bg-[#1A1A2E] flex items-center justify-center flex-shrink-0">
-            <span className="text-[#00D4AA] text-xs font-bold">S</span>
+      <aside className="w-56 flex-shrink-0 bg-[#111116] border-r border-[#1E1E26] flex flex-col">
+        <div className="flex items-center gap-3 px-5 py-5">
+          <div className="w-8 h-8 rounded-xl bg-[#1A1A2E] flex items-center justify-center flex-shrink-0 border border-[#2A2A3E]">
+            <span className="text-[#00D4AA] text-sm font-bold">S</span>
           </div>
           <span className="font-semibold text-white text-sm tracking-tight">Sempre AI</span>
         </div>
 
-        {/* New chat */}
-        <div className="p-3">
-          <button className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-400 hover:bg-[#1E1E26] hover:text-gray-200 transition-colors border border-[#1E1E2E]">
-            <span className="text-lg leading-none">+</span>
+        <div className="px-3 mb-4">
+          <button className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-[#1A1A22] hover:text-gray-300 transition-colors border border-[#1E1E26]">
+            <span className="text-base leading-none pb-0.5">+</span>
             <span>New conversation</span>
           </button>
         </div>
 
-        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* User */}
-        <div className="p-4 border-t border-[#1E1E24] flex items-center gap-3">
+        <div className="p-4 border-t border-[#1E1E26] flex items-center gap-3">
           <UserButton afterSignOutUrl="/" />
-          <span className="text-xs text-gray-500 truncate">{user?.emailAddresses[0]?.emailAddress}</span>
+          <div className="min-w-0">
+            <p className="text-xs text-gray-400 truncate">{user?.emailAddresses[0]?.emailAddress}</p>
+          </div>
         </div>
       </aside>
 
-      {/* Chat area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <ChatInterface token={token || ""} />
       </div>
